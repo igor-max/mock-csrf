@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome!!!</h1>
+
+  <div id="login_container">
+    <input type="text">
+    <input type="password">
+    <button type='submit' id='login_btn'>login</button>
+  </div>
+
+  <div id="transfer" class="hidden">
+    <div id="total_money"></div>
+    user: <input type="text">
+    money: <input type="text">
+    <button id='transfer_btn'>转账</button>
+  </div>
+  <script>
+    document.getElementById('login_btn').onclick = function() {
+      fetch('/login').then(r => r.json()).then(r => {
+        if(r.code === 0) {
+          total_money.innerHTML = 'your total money: ' + r.data.money;
+          login_container.classList.add('hidden');
+          transfer.classList.remove('hidden');
+        }
+      });
+    }
+
+    transfer_btn.onclick = function() {
+      // 为什么没有携带cookies
+      fetch('/transfer').then(r => r.json).then(r => console.log(r));
+    }
+  </script>
+</body>
+</html>

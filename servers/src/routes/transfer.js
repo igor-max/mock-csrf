@@ -1,20 +1,31 @@
 const express = require('express')
+const money = require('../money');
 const router = express.Router();
 
-router.use('/', function timeLog(req, res) {
-  const { query } = req;
-  const { userId } = req.cookies;
-  if(userId){
-    res.send({
-      status: 'transfer success',
-      transfer: query.number
-    })
-  }else{
-    res.send({
-      status: 'error',
-      transfer: ''
-    })
-  }
+router.get('/', function timeLog(req, res) {
+  console.log(req.cookies)
+  console.log(111);
+
+  res.send({
+    code: 0,
+    data: {}
+  })
+  // if(userId){
+  //   money.total -= 100;
+  //   res.send({
+  //     code: 0,
+  //     message: 'success',
+  //     data: {
+  //       money: money.total
+  //     }
+  //   })
+  // }else{
+  //   res.send({
+  //     code: 0,
+  //     status: 'error',
+  //     transfer: ''
+  //   })
+  // }
 });
 
 
